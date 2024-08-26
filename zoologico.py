@@ -11,7 +11,7 @@ class Animal:
 
     def adicionar_vizinho(self, nome_vizinho):
         if len(self.vizinhos) < 2:
-            self.vizinhos.append(nome_vizinho)
+                self.vizinhos.append(nome_vizinho)
         else:
             print(f"{self.nome} já tem o máximo de vizinhos.")
 
@@ -27,7 +27,7 @@ class Animal:
 
 class Mamifero(Animal):
     def __init__(self, nome, idade, barulho, movimento, alimentacao, habitat, horas_alimentacao):
-        super().__init__(nome, idade, barulho, movimento, alimentacao, habitat, horas_alimentacao)
+        super().__init__(nome, idade, barulho, movimento, alimentacao, habitat, horas_alimentacao) # super() ajuda a utilizar item da classe principal (nesse caso a class Amnimal)
 
 
 class Ave(Animal):
