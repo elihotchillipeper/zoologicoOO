@@ -11,7 +11,7 @@ class Animal:
 
     def adicionar_vizinho(self, nome_vizinho):
         if len(self.vizinhos) < 2:
-                self.vizinhos.append(nome_vizinho)
+            self.vizinhos.append(nome_vizinho)
         else:
             print(f"{self.nome} já tem o máximo de vizinhos.")
 
@@ -24,28 +24,32 @@ class Animal:
     def alimentar(self):
         return f"{self.nome} foi alimentado às {self.horas_alimentacao} horas."
 
-
 class Mamifero(Animal):
     def __init__(self, nome, idade, barulho, movimento, alimentacao, habitat, horas_alimentacao):
-        super().__init__(nome, idade, barulho, movimento, alimentacao, habitat, horas_alimentacao) # super() ajuda a utilizar item da classe principal (nesse caso a class Amnimal)
-
-
+        super().__init__(nome, idade, barulho, movimento, alimentacao, habitat, horas_alimentacao)
+        
 class Ave(Animal):
     def __init__(self, nome, idade, barulho, movimento, alimentacao, habitat, horas_alimentacao):
         super().__init__(nome, idade, barulho, movimento, alimentacao, habitat, horas_alimentacao)
-
-
+        
 class Reptil(Animal):
     def __init__(self, nome, idade, barulho, movimento, alimentacao, habitat, horas_alimentacao):
         super().__init__(nome, idade, barulho, movimento, alimentacao, habitat, horas_alimentacao)
-
-
+        
 class Zoo:
     def __init__(self):
         self.animais = []
-
+        
     def adicionar_animal(self, animal):
-        self.animais.append(animal)
+        self.animais.append(animal)# Atribuir vizinhos automaticamente ao adicionar o animal
+        if len(self.animais) > 2:
+            animal.adicionar_vizinho(self.animais[-2].nome)
+            animal.adicionar_vizinho(self.animais[-3].nome)
+            self.animais[-2].adicionar_vizinho(animal.nome)
+            self.animais[-3].adicionar_vizinho(animal.nome)
+        elif len(self.animais) == 2:
+            animal.adicionar_vizinho(self.animais[-2].nome)
+            self.animais[-2].adicionar_vizinho(animal.nome)
 
     def listar_animais(self):
         for animal in self.animais:
@@ -59,7 +63,7 @@ class Zoo:
     def listar_vizinhos(self, nome):
         for animal in self.animais:
             if animal.nome == nome:
-                print(f"Vizinhos de {nome}: {', '.join(animal.vizinhos) or 'Nenhum'}") 
+                print(f"Vizinhos de {nome}: {', '.join(animal.vizinhos) or 'Nenhum'}")
                 return
         print("Animal não encontrado!")
 
@@ -77,7 +81,6 @@ class Zoo:
 
 def menu():
     zoo = Zoo()
-
     zoo.adicionar_animal(Mamifero("Leão", 6, "Rugido", "Caminhar/Quadrúpede", "Carnívoro", "Savana", "12:00"))
     zoo.adicionar_animal(Ave("Águia", 4, "Grasnar", "Voar/Bípede", "Carnívoro", "Montanhas", "13:00"))
     zoo.adicionar_animal(Reptil("Cobra", 3, "Nenhum", "Rastejar", "Carnívoro", "Planícies/Florestas", "14:00"))
