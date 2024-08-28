@@ -55,5 +55,5 @@ Exibe um menu interativo para o usuário escolher entre diferentes operações:
 
 ## Exemplo de Uso
 
-Ao executar o programa, o usuário verá um menu e pode escolher uma opção digitando o número correspondente. Por exemplo:
+Ao executar o programa, o usuário verá um menu e pode escolher uma opção digitando o número correspondente.
 
